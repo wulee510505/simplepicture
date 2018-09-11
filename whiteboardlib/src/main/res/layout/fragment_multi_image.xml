@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#181819"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="@dimen/space_size"
+        android:verticalSpacing="@dimen/space_size"
+        android:paddingBottom="?android:attr/actionBarSize"
+        android:clipToPadding="false"
+        android:numColumns="3"/>
+
+    <RelativeLayout
+        android:clickable="true"
+        android:id="@+id/footer"
+        android:background="@color/com_bg_gray"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/category_btn"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            tools:text="所有图片"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/text_indicator"
+            android:drawablePadding="5dp"
+            android:background="@null"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+</RelativeLayout>

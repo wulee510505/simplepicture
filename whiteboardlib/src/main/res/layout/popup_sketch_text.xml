@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_pupwindow_et"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="请输入文字"
+    android:imeOptions="actionDone"
+    android:maxWidth="200dp"
+    android:minWidth="120dp"
+    android:background="@color/gray"
+    android:selectAllOnFocus="true"
+    android:textSize="22dp" />

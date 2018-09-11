@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_pic_type">
+        <item>动物</item>
+        <item>果蔬</item>
+        <item>动漫</item>
+        <item>交通工具</item>
+    </string-array>
+
+</resources>

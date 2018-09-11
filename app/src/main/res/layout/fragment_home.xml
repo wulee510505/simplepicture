@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivstatebar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/colorAccent" />
+
+
+   <com.wulee.simplepicture.view.SwitchTabBar
+       android:id="@+id/switchbar"
+       android:layout_width="match_parent"
+       android:layout_height="48dp"
+       android:background="@color/com_app_color"
+       android:layout_below="@id/ivstatebar"/>
+
+
+    <com.wulee.simplepicture.view.NoScroViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/switchbar"
+        android:overScrollMode="never" />
+
+
+
+</RelativeLayout>

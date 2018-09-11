@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.wulee.simplepicture.view.BaseTitleLayout
+        android:id="@+id/titlelayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_layout_height"
+        android:layout_below="@id/ivstatebar"
+        android:background="@color/colorAccent"
+        app:titleCenterText="上传作品"
+        app:titleLeftImg="@mipmap/icon_back"
+        app:titleLeftImgVisible="true"
+        app:titleLeftText=""
+        app:titleRightImg1="@mipmap/icon_upload"
+        app:titleRightImg2="@mipmap/icon_delete"
+        app:titleTextColor="@color/white"
+        app:titleTextSize="@dimen/font_18sp"/>
+
+
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:spinnerMode="dialog"
+        android:layout_below="@id/titlelayout" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/com_bg_gray"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_below="@id/spinner_type"/>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/line"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
