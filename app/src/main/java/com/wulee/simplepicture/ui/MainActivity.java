@@ -87,6 +87,7 @@ public class MainActivity extends BaseActivity {
         }
         long interal = System.currentTimeMillis() - lastCheckUpdateTime;
         if(interal > Constant.CHECK_UPDATE_INTERVAL){
+            BmobUpdateAgent.setUpdateOnlyWifi(true);
             checkUpdate();
             mACache.put(Constant.KEY_LAST_CHECK_UPDATE_TIME,String.valueOf(System.currentTimeMillis()));
         }
@@ -240,7 +241,7 @@ public class MainActivity extends BaseActivity {
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> data) {
-                        BmobUpdateAgent.forceUpdate(MainActivity.this);
+                        BmobUpdateAgent.update(MainActivity.this);
                     }
                 })
                 .onDenied(new Action<List<String>>() {

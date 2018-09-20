@@ -128,6 +128,7 @@ public class FragMine extends MainBaseFrag {
         } else {
             tvNickName.setText("未登录");
         }
+        tvAppVersion.setText("软件版本：v"+ AppUtils.getVersionName());
 
         if (!OtherUtil.hasLogin()) {
             tvLogout.setText("登录");
@@ -229,7 +230,8 @@ public class FragMine extends MainBaseFrag {
                         }
                     }
                 });
-                BmobUpdateAgent.update(getContext());
+                BmobUpdateAgent.setUpdateOnlyWifi(true);
+                BmobUpdateAgent.forceUpdate(getContext());
                 break;
             case R.id.rl_my_sim_pic:
                 Intent intent;

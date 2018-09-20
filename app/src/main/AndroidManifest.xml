@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
         android:name=".App"
@@ -72,6 +73,20 @@
                 android:resource="@xml/provider_paths"
                 tools:replace="name,resource"/>
         </provider>
+
+        <!-- 解决 Android N 7.0 上 报错：android.os.FileUriExposedException-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.wulee.simplepicture"
+            android:grantUriPermissions="true"
+            android:exported="false"
+            tools:replace="name,authorities,exported,grantUriPermissions">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="name,resource"/>
+        </provider>
+
 
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
