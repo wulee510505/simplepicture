@@ -3,7 +3,12 @@ package com.wulee.simplepicture;
 import android.app.Application;
 import android.content.Context;
 
+import com.lzy.imagepicker.ImagePicker;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.umeng.commonsdk.UMConfigure;
 import com.wulee.simplepicture.utils.ACache;
+import com.wulee.simplepicture.utils.CrashHandler;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,6 +42,8 @@ public class App extends Application {
     }
 
     public static ACache mACache;
+
+    public static ImagePicker imagePicker;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,6 +51,23 @@ public class App extends Application {
         context = getApplicationContext();
         mACache =  ACache.get(this);
         initBmobSDK();
+
+        // 调试时，将第三个参数改为true
+        Bugly.init(this, "bcc1f72e11", true);
+
+        //设置异常处理器为UncaughtExceptionHandler处理器
+        CrashHandler handler = CrashHandler.getInstance();
+        handler.init(this);
+
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "5b9f8d5a8f4a9d48e500003d");
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // 安装tinker
+        Beta.installTinker();
     }
 
 

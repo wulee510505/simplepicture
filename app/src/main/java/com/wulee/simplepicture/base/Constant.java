@@ -20,4 +20,8 @@ public interface Constant {
 
     String BOMB_APP_ID = "f13f2de697a3e7d165f9572f77af51bc";
     //String BOMB_APP_ID = "994528a22f6d76397dc7fcef656a902f";//测试版
+
+
+    String KEY_LAST_CHECK_UPDATE_TIME = "key_last_check_update_time";
+    long CHECK_UPDATE_INTERVAL = 10 * 60 * 1000;// 10分钟
 }

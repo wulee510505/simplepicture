@@ -11,4 +11,58 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="control_btn">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:padding">@dimen/control_btn_padding</item>
+        <item name="android:background">@drawable/control_btn_bg</item>
+    </style>
+
+    <style name="control_btn.space">
+        <item name="android:clickable">false</item>
+    </style>
+
+    <style name="control_btn.action" >
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="stroke_color_btn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+    </style>
+    <style name="stroke_type_btn">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">0</item>
+    </style>
+
+
+    <style name="mypopwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <!-- 指定显示的动画xml -->
+
+        <item name="android:windowExitAnimation">@anim/pophide_anim</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+    <style name="dialogActivity" >
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

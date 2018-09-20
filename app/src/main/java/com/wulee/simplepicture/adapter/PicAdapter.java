@@ -2,6 +2,7 @@ package com.wulee.simplepicture.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import com.wulee.simplepicture.utils.ImageUtil;
 import com.wulee.simplepicture.utils.NoFastClickUtils;
 import com.wulee.simplepicture.utils.OtherUtil;
 import com.wulee.simplepicture.utils.UIUtils;
+import com.wx.goodview.GoodView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,10 +32,16 @@ public class PicAdapter extends BaseQuickAdapter<StickFigureImgObj,BaseViewHolde
 
     private Context context;
     private HashMap<String,Integer> likeNumMap = new HashMap<>();
+    private boolean mIsLikeOpt = true; //是否可以点赞
 
     public PicAdapter(int layoutResId, ArrayList<StickFigureImgObj> dataList, Context context) {
         super(layoutResId, dataList);
         this.context = context;
+    }
+
+    public void setLikeOpt(boolean likeOpt) {
+        mIsLikeOpt = likeOpt;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -55,17 +63,19 @@ public class PicAdapter extends BaseQuickAdapter<StickFigureImgObj,BaseViewHolde
         LinearLayout ll = baseViewHolder.getView(R.id.ll_likes);
         tvLikeNum.setText(pic.getLikeNum()+"");
 
-        ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!OtherUtil.hasLogin()) {
-                    context.startActivity(new Intent(context, LoginActivity.class));
-                    return;
+        if(mIsLikeOpt){
+            ll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!OtherUtil.hasLogin()) {
+                        context.startActivity(new Intent(context, LoginActivity.class));
+                        return;
+                    }
+                    int num = pic.getLikeNum();
+                    addLikes(pic.getObjectId(),num,tvLikeNum);
                 }
-                int num = pic.getLikeNum();
-                addLikes(pic.getObjectId(),num,tvLikeNum);
-            }
-        });
+            });
+        }
     }
 
 
@@ -93,7 +103,9 @@ public class PicAdapter extends BaseQuickAdapter<StickFigureImgObj,BaseViewHolde
                 if(e == null){
                     tv.setText(likeNumMap.get(objId)+"");
                     //EventBus.getDefault().post(new RefreshEvent());
-                    Toast.makeText(context, "点赞成功", Toast.LENGTH_SHORT).show();
+                    GoodView goodView = new GoodView(context);
+                    goodView.setTextInfo("+1",Color.RED,50);
+                    goodView.show(tv);
                 }else{
                     Toast.makeText(context, "点赞失败", Toast.LENGTH_SHORT).show();
                 }

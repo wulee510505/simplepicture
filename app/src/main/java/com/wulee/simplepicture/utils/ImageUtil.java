@@ -21,6 +21,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.io.BufferedInputStream;
@@ -210,7 +211,6 @@ public class ImageUtil {
 	 * @param src
 	 * @param dstFilePath
 	 * @param factor
-	 * @return
 	 * @throws IOException
 	 */
 	public static File resizeBitmapAndSave(Bitmap src, String dstFilePath, float factor) throws IOException {
@@ -650,6 +650,27 @@ public class ImageUtil {
 		if(!TextUtils.isEmpty(imgUrl)){
 			RequestOptions options = new RequestOptions()
 					.fitCenter()
+					.diskCacheStrategy(DiskCacheStrategy.ALL)
+					.placeholder(defResId);
+			glideRequest.load(imgUrl).apply(options).into(iv);
+		}else{
+			iv.setImageResource(defResId);
+		}
+	}
+
+
+	/**
+	 * 处理圆形图
+	 */
+	public static void setCircleImageView(ImageView iv, String imgUrl, int defResId, Context context){
+		RequestManager glideRequest = Glide.with(context);
+		if(!TextUtils.isEmpty(imgUrl)){
+			RequestOptions options = new RequestOptions()
+					.fitCenter()
+					.transforms(new GlideCircleTransform(context, 0))
+					.dontAnimate()
+					.skipMemoryCache(false)
+					.diskCacheStrategy(DiskCacheStrategy.ALL)
 					.placeholder(defResId);
 			glideRequest.load(imgUrl).apply(options).into(iv);
 		}else{

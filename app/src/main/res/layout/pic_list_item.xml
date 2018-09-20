@@ -17,10 +17,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_10"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:paddingBottom="@dimen/dp_4"
-        android:paddingRight="@dimen/dp_4">
+        android:paddingRight="@dimen/dp_10">
 
 
         <ImageView

@@ -104,7 +104,8 @@ public class FragHomeChild extends BaseFragment {
     @Override
     protected void initData() {
         isRefresh = true;
-        getPicList(1,STATE_REFRESH);
+        curPage = 0;
+        getPicList(0,STATE_REFRESH);
     }
 
     @Override
@@ -114,7 +115,8 @@ public class FragHomeChild extends BaseFragment {
             @Override
             public void onRefresh() {
                 isRefresh  = true;
-                getPicList(1,STATE_REFRESH);
+                curPage = 0;
+                getPicList(0,STATE_REFRESH);
             }
         });
 
@@ -145,7 +147,8 @@ public class FragHomeChild extends BaseFragment {
     @Subscribe
     public void onEventMainThread(RefreshEvent event) {
         isRefresh  = true;
-        getPicList(1,STATE_REFRESH);
+        curPage = 0;
+        getPicList(0,STATE_REFRESH);
     }
 
     @Override
@@ -174,7 +177,7 @@ public class FragHomeChild extends BaseFragment {
         // 如果是加载更多
         if(actionType == STATE_MORE){
             // 跳过之前页数并去掉重复数据
-            query.setSkip(page * PAGE_SIZE + 1);
+            query.setSkip(page * PAGE_SIZE);
         }else{
             query.setSkip(0);
         }

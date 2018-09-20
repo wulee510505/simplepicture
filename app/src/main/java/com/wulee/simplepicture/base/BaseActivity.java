@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.umeng.analytics.MobclickAgent;
 import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.utils.AppUtils;
 import com.wulee.simplepicture.view.BaseProgressDialog;
@@ -51,6 +52,18 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // 添加Activity到堆栈
         AppUtils.getAppManager().addActivity(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     /**

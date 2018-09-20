@@ -208,10 +208,12 @@ public class UploadPicActivity extends BaseActivity {
                                 EventBus.getDefault().post(new RefreshEvent());
 
                                 for (int i = 0; i < selfilePathList.size(); i++) {
-                                    File file = new File(selfilePathList.get(i));
+                                    String path = selfilePathList.get(i);
+                                    File file = new File(path);
                                     FileUtils.deleteFile(file);
 
-                                    mFilePathList.remove(selfilePathList.get(i));
+                                    mFileAdapter.removeSelFilePath(path);
+                                    mFilePathList.remove(path);
                                     mFileAdapter.notifyDataSetChanged();
                                 }
                             }

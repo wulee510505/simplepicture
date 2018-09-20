@@ -10,7 +10,6 @@
         android:id="@+id/titlelayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/head_layout_height"
-        android:layout_below="@id/ivstatebar"
         android:background="@color/colorAccent"
         app:titleCenterText="我的作品"
         app:titleLeftImg="@mipmap/icon_back"

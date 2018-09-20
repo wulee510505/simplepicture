@@ -2,7 +2,6 @@ package com.wulee.simplepicture.ui;
 
 import android.Manifest;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -21,19 +19,20 @@ import android.view.WindowManager;
 
 import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.base.BaseActivity;
+import com.wulee.simplepicture.base.Constant;
 import com.wulee.simplepicture.ui.fragment.FragHome;
 import com.wulee.simplepicture.ui.fragment.FragMine;
-import com.wulee.simplepicture.utils.FileUtils;
 import com.wulee.simplepicture.view.BottomNavigationViewEx;
 import com.wulee.simplepicture.view.NoScroViewPager;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
-import com.zhihu.matisse.Matisse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.update.BmobUpdateAgent;
+
+import static com.wulee.simplepicture.App.mACache;
 
 public class MainActivity extends BaseActivity {
     private BottomNavigationViewEx bnve;
@@ -71,6 +70,26 @@ public class MainActivity extends BaseActivity {
 
                     }
                 }).start();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        long lastCheckUpdateTime = 0L;
+        try {
+            String timeStr = mACache.getAsString(Constant.KEY_LAST_CHECK_UPDATE_TIME);
+            if(!TextUtils.isEmpty(timeStr)){
+                lastCheckUpdateTime = Long.parseLong(timeStr);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        long interal = System.currentTimeMillis() - lastCheckUpdateTime;
+        if(interal > Constant.CHECK_UPDATE_INTERVAL){
+            checkUpdate();
+            mACache.put(Constant.KEY_LAST_CHECK_UPDATE_TIME,String.valueOf(System.currentTimeMillis()));
+        }
     }
 
     /**
@@ -212,26 +231,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FragMine.REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            List<Uri>  selectedUri = Matisse.obtainResult(data);
-            Log.d("Matisse", "selected: " + selectedUri);
-
-            if(selectedUri!=null&& selectedUri.size()>0){
-                Uri uri = selectedUri.get(0);
-                String path = FileUtils.getFilePathFromContentUri(uri,getContentResolver());
-                if (!TextUtils.isEmpty(path)) {
-                    if(mListener!=null)
-                        mListener.userImageSelected(path);
-                }
-            }
-
-
-        }
-    }
-
 
     private void checkUpdate(){
         AndPermission
@@ -251,13 +250,5 @@ public class MainActivity extends BaseActivity {
                     }
                 })
                 .start();
-    }
-
-    private onUserImageSelectedListener mListener;
-    public interface onUserImageSelectedListener{
-        void userImageSelected(String path);
-    }
-    public void setListener(onUserImageSelectedListener listener) {
-        mListener = listener;
     }
 }

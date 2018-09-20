@@ -7,7 +7,7 @@ import android.view.WindowManager;
 
 import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.base.BaseActivity;
-import com.yinghe.whiteboardlib.fragment.WhiteBoardFragment;
+import com.wulee.simplepicture.moudle.whiteboard.fragment.WhiteBoardFragment;
 
 /**
  * create by  wulee   2018/9/6 19:01

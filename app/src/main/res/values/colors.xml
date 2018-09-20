@@ -13,4 +13,7 @@
     <color name="tv_color_2">#666666</color>
     <color name="tv_color_3">#999999</color>
     <color name="tv_color_4">#dbdbdb</color>
+
+    <color name="gray">#eeeeee</color>
+    <color name="com_bg_gray">#aaaaaaaa</color>
 </resources>

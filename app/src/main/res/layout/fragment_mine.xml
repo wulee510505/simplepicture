@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:toos="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -46,8 +47,7 @@
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_60"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:background="@mipmap/icon_user_avatar_def"/>
             </com.wulee.simplepicture.view.RCRelativeLayout>
 
 
@@ -142,11 +142,45 @@
 
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/rl_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_my_sim_pic"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/tv_cache_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_15"
+            toos:text="0M"
+            android:textColor="@color/tv_color_3"
+            android:textSize="@dimen/font_14sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:text="清理缓存"
+            android:textColor="@color/tv_color_3"
+            android:textSize="@dimen/font_14sp" />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_below="@id/rl_my_sim_pic"
+       android:layout_below="@id/rl_clear_cache"
         android:background="@color/white"
         android:gravity="center"
         android:paddingTop="@dimen/dp_10"

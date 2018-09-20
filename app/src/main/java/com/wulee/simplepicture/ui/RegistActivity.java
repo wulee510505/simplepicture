@@ -63,6 +63,7 @@ public class RegistActivity extends BaseActivity {
         piInfo.setMobilePhoneNumber(mobile);
         piInfo.setUsername(mobile);
         piInfo.setPassword(pwd);
+        piInfo.setPlatfotm("android");
         showProgressDialog(true);
         piInfo.signUp(new SaveListener<UserInfo>() {
             @Override
@@ -116,11 +117,10 @@ public class RegistActivity extends BaseActivity {
                     Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
-               /* if (!OtherUtil.isPassword(pwd)) {
+                if (!OtherUtil.isPassword(pwd)) {
                     Toast.makeText(this, "密码由6~16位数字和英文字母组成", Toast.LENGTH_SHORT).show();
                     return;
-                }*/
-
+                }
               /* if(TextUtils.isEmpty(authCode)){
                     Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
                     return;

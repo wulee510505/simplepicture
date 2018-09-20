@@ -86,4 +86,13 @@ public class PicFileAdapter  extends BaseQuickAdapter<String,BaseViewHolder> {
         }
         return selFilePath;
     }
+
+    public void removeSelFilePath(String path){
+        if(selFileMap != null && selFileMap.size()>0){
+           if(selFileMap.containsKey(path)){
+               selFileMap.remove(path);
+           }
+        }
+    }
+
 }

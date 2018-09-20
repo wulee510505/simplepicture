@@ -18,7 +18,6 @@ import com.wulee.simplepicture.base.BaseActivity;
 import com.wulee.simplepicture.base.RefreshEvent;
 import com.wulee.simplepicture.bean.StickFigureImgObj;
 import com.wulee.simplepicture.bean.UserInfo;
-import com.wulee.simplepicture.utils.OtherUtil;
 import com.wulee.simplepicture.utils.UIUtils;
 import com.wulee.simplepicture.view.BaseTitleLayout;
 import com.wulee.simplepicture.view.FullyGridLayoutManager;
@@ -83,6 +82,8 @@ public class MySimPicActivity extends BaseActivity {
         recyclerview.setLayoutManager(new FullyGridLayoutManager(this, 3));
         recyclerview.addItemDecoration(new SpaceItemDecoration(3, UIUtils.dip2px(10), false));
         recyclerview.setAdapter(mAdapter);
+
+        mAdapter.setLikeOpt(false);
     }
 
 
@@ -95,12 +96,7 @@ public class MySimPicActivity extends BaseActivity {
             }
             @Override
             public void onRightImg1ClickListener() {
-                Intent intent = null;
-                if(OtherUtil.hasLogin()){
-                    intent = new Intent(MySimPicActivity.this,UploadPicActivity.class);
-                }else{
-                    intent = new Intent(MySimPicActivity.this,LoginActivity.class);
-                }
+                Intent  intent = new Intent(MySimPicActivity.this,UploadPicActivity.class);
                 startActivity(intent);
             }
         });
@@ -109,7 +105,7 @@ public class MySimPicActivity extends BaseActivity {
             @Override
             public void onRefresh() {
                 isRefresh  = true;
-                getMySimPicList(1,STATE_REFRESH);
+                getMySimPicList(0,STATE_REFRESH);
             }
         });
 
@@ -192,7 +188,7 @@ public class MySimPicActivity extends BaseActivity {
     @Subscribe
     public void onEventMainThread(RefreshEvent event) {
         isRefresh  = true;
-        getMySimPicList(1,STATE_REFRESH);
+        getMySimPicList(0,STATE_REFRESH);
     }
 
     /**
@@ -207,7 +203,7 @@ public class MySimPicActivity extends BaseActivity {
         // 如果是加载更多
         if(actionType == STATE_MORE){
             // 跳过之前页数并去掉重复数据
-            query.setSkip(page * PAGE_SIZE + 1);
+            query.setSkip(page * PAGE_SIZE);
         }else{
             query.setSkip(0);
         }
