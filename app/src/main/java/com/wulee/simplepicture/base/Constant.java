@@ -24,4 +24,7 @@ public interface Constant {
 
     String KEY_LAST_CHECK_UPDATE_TIME = "key_last_check_update_time";
     long CHECK_UPDATE_INTERVAL = 10 * 60 * 1000;// 10分钟
+
+    String KEY_LAST_UPDATE_CURR_USERINFO_TIME = "key_last_update_curr_userinfo_time";
+    long UPDATE_CURR_USERINFO_INTERVAL = 5 * 60 * 1000;// 5分钟
 }

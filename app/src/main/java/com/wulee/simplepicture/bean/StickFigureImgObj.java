@@ -13,6 +13,7 @@ public class StickFigureImgObj extends BmobObject {
     private  String[] imageGroup;
     private String type;
     private int likeNum;
+    private boolean isHide;
 
     public String getName() {
         return name;
@@ -52,5 +53,13 @@ public class StickFigureImgObj extends BmobObject {
 
     public void setLikeNum(int likeNum) {
         this.likeNum = likeNum;
+    }
+
+    public boolean isHide() {
+        return isHide;
+    }
+
+    public void setHide(boolean hide) {
+        isHide = hide;
     }
 }

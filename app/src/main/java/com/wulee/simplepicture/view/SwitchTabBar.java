@@ -55,7 +55,7 @@ public class SwitchTabBar extends RelativeLayout {
         mLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
         mHzScrollView.addView(mLinearLayout);
 
-        mTabs = new ArrayList<SwitchTab>();
+        mTabs = new ArrayList<>();
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(dm);
@@ -129,12 +129,7 @@ public class SwitchTabBar extends RelativeLayout {
                 }
             }
         }
-
-
-
-        if (isScroll) {
-            scrollTo(position);
-        }
+        scrollTo(position);
     }
 
     private void scrollTo(int position) {

@@ -173,6 +173,8 @@ public class FragHomeChild extends BaseFragment {
     private void getPicList(final int page, final int actionType){
         BmobQuery<StickFigureImgObj> query = new BmobQuery<>();
         query.addWhereEqualTo("type",String.valueOf(mType));
+        query.addWhereNotEqualTo("isHide",true);//查询没有隐藏的
+        query.include("userInfo");
         query.order("-likeNum,-createdAt");//按点赞数降序、时间倒序排
         // 如果是加载更多
         if(actionType == STATE_MORE){
@@ -204,6 +206,7 @@ public class FragHomeChild extends BaseFragment {
                     }
                     if (dataList.size() < PAGE_SIZE) {
                         //第一页如果不够一页就不显示没有更多数据布局
+
                         mAdapter.loadMoreEnd(true);
                     } else {
                         mAdapter.loadMoreComplete();
@@ -213,7 +216,7 @@ public class FragHomeChild extends BaseFragment {
                     }
                 }else{
                     mAdapter.loadMoreFail();
-                    Log.d("","查询LocationInfo失败"+e.getMessage()+","+e.getErrorCode());
+                    Log.d("","查询失败"+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });

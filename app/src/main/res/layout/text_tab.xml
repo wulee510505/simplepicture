@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="@dimen/font_15sp" />
+        android:textSize="@dimen/font_18sp" />
 
     <ImageView
         android:id="@+id/text_tab_divider"

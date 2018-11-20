@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"> <!-- pressed the button status -->
+        <shape android:shape="rectangle">
+            <!-- 描边 -->
+            <stroke android:width="1px" android:color="@color/com_app_color" />
+
+            <solid android:color="@color/white" />
+
+            <padding android:bottom="@dimen/dp_4" android:left="@dimen/dp_10" android:right="@dimen/dp_10" android:top="@dimen/dp_4" />
+
+            <corners android:radius="@dimen/dp_4"/>
+        </shape>
+    </item>
+    <item> <!-- no focus the button status(the normal status button) -->
+        <shape android:shape="rectangle">
+            <!-- 描边 -->
+            <stroke android:width="1px" android:color="@color/com_app_color" />
+
+            <solid android:color="@color/white" />
+
+            <padding android:bottom="@dimen/dp_4" android:left="@dimen/dp_10" android:right="@dimen/dp_10" android:top="@dimen/dp_4" />
+
+            <corners android:radius="@dimen/dp_4"/>
+        </shape>
+    </item>
+
+</selector>

@@ -27,6 +27,7 @@ import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.base.Constant;
 import com.wulee.simplepicture.base.MainBaseFrag;
 import com.wulee.simplepicture.bean.UserInfo;
+import com.wulee.simplepicture.ui.FollowUserActivity;
 import com.wulee.simplepicture.ui.LoginActivity;
 import com.wulee.simplepicture.ui.MySimPicActivity;
 import com.wulee.simplepicture.utils.AppUtils;
@@ -199,7 +200,7 @@ public class FragMine extends MainBaseFrag {
         }
     }
 
-    @OnClick({R.id.iv_header, R.id.tv_check_update, R.id.tv_logout, R.id.rl_my_sim_pic, R.id.tv_nick_name,R.id.rl_clear_cache})
+    @OnClick({R.id.iv_header, R.id.tv_check_update, R.id.rl_follow,R.id.tv_logout, R.id.rl_my_sim_pic, R.id.tv_nick_name,R.id.rl_clear_cache})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_header:
@@ -237,6 +238,14 @@ public class FragMine extends MainBaseFrag {
                 Intent intent;
                 if (OtherUtil.hasLogin()) {
                     intent = new Intent(getContext(), MySimPicActivity.class);
+                } else {
+                    intent = new Intent(getContext(), LoginActivity.class);
+                }
+                startActivity(intent);
+                break;
+            case R.id.rl_follow:
+                if (OtherUtil.hasLogin()) {
+                    intent = new Intent(getContext(), FollowUserActivity.class);
                 } else {
                     intent = new Intent(getContext(), LoginActivity.class);
                 }

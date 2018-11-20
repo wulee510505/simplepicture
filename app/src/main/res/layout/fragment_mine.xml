@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:toos="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:toos="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
-
 
 
     <RelativeLayout
@@ -29,26 +28,13 @@
             android:layout_centerVertical="true"
             android:orientation="horizontal">
 
-
-
-            <com.wulee.simplepicture.view.RCRelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                app:round_as_circle="true"
-                app:round_corner_bottom_right="0dp"
-                app:stroke_color="#cdcdcd"
-                app:rc_stroke_width="1dp">
-
-                <ImageView
-                    android:id="@+id/iv_header"
-                    android:layout_width="@dimen/dp_60"
-                    android:layout_height="@dimen/dp_60"
-                    android:layout_gravity="center_vertical"
-                    android:background="@mipmap/icon_user_avatar_def"/>
-            </com.wulee.simplepicture.view.RCRelativeLayout>
+            <ImageView
+                android:id="@+id/iv_header"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/icon_user_avatar_def" />
 
 
             <LinearLayout
@@ -86,10 +72,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_header"
+        android:layout_marginTop="@dimen/dp_5"
         android:background="@color/white"
         android:paddingBottom="@dimen/dp_10"
-        android:paddingTop="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_5">
+        android:paddingTop="@dimen/dp_10">
 
         <TextView
             android:id="@+id/tv_app_version"
@@ -118,11 +104,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_app_version"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingBottom="@dimen/dp_10"
-        android:paddingTop="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10">
+        android:paddingTop="@dimen/dp_10">
 
 
         <ImageView
@@ -144,26 +130,56 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_clear_cache"
+        android:id="@+id/rl_follow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_my_sim_pic"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingBottom="@dimen/dp_10"
-        android:paddingTop="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10">
+        android:paddingTop="@dimen/dp_10">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_15"
+            android:src="@mipmap/icon_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:text="关注"
+            android:textColor="@color/tv_color_3"
+            android:textSize="@dimen/font_14sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_follow"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10">
 
         <TextView
             android:id="@+id/tv_cache_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp_15"
-            toos:text="0M"
             android:textColor="@color/tv_color_3"
-            android:textSize="@dimen/font_14sp" />
+            android:textSize="@dimen/font_14sp"
+            toos:text="0M" />
 
 
         <TextView
@@ -176,16 +192,18 @@
             android:textSize="@dimen/font_14sp" />
     </RelativeLayout>
 
+
+
     <TextView
         android:id="@+id/tv_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_below="@id/rl_clear_cache"
+        android:layout_below="@id/rl_clear_cache"
+        android:layout_marginTop="@dimen/dp_40"
         android:background="@color/white"
         android:gravity="center"
-        android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_40"
+        android:paddingTop="@dimen/dp_10"
         android:text="退出登录"
         android:textColor="@color/tv_color_2"
         android:textSize="@dimen/font_15sp" />

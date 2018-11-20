@@ -20,8 +20,10 @@ import android.view.WindowManager;
 import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.base.BaseActivity;
 import com.wulee.simplepicture.base.Constant;
+import com.wulee.simplepicture.bean.UserInfo;
 import com.wulee.simplepicture.ui.fragment.FragHome;
 import com.wulee.simplepicture.ui.fragment.FragMine;
+import com.wulee.simplepicture.utils.AppUtils;
 import com.wulee.simplepicture.view.BottomNavigationViewEx;
 import com.wulee.simplepicture.view.NoScroViewPager;
 import com.yanzhenjie.permission.Action;
@@ -30,8 +32,11 @@ import com.yanzhenjie.permission.AndPermission;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.update.BmobUpdateAgent;
 
+import static cn.bmob.v3.BmobUser.getCurrentUser;
 import static com.wulee.simplepicture.App.mACache;
 
 public class MainActivity extends BaseActivity {
@@ -72,6 +77,44 @@ public class MainActivity extends BaseActivity {
                 }).start();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        long lastUpdateCurrPersonInfoTime = 0L;
+        try {
+            String timeStr = mACache.getAsString(Constant.KEY_LAST_UPDATE_CURR_USERINFO_TIME);
+            if(!TextUtils.isEmpty(timeStr)){
+                lastUpdateCurrPersonInfoTime = Long.parseLong(timeStr);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        long interal = System.currentTimeMillis() - lastUpdateCurrPersonInfoTime;
+        if(interal > Constant.UPDATE_CURR_USERINFO_INTERVAL){
+            final UserInfo userInfo = getCurrentUser(UserInfo.class);
+            if(null == userInfo)
+                return;
+            userInfo.update(new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    if(e == null){
+                        mACache.put(Constant.KEY_LAST_UPDATE_CURR_USERINFO_TIME,String.valueOf(System.currentTimeMillis()));
+                    }else{
+                        if(e.getErrorCode() == 206){
+                            toast("您的账号在其他地方登录，请重新登录");
+                            mACache.put("has_login", "no");
+                            AppUtils.AppExit(MainActivity.this);
+                            UserInfo.logOut();
+                            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        }
+                    }
+                }
+            });
+        }
+
+    }
 
     @Override
     protected void onStart() {

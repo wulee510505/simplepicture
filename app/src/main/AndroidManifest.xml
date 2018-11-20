@@ -53,6 +53,12 @@
         <activity android:name=".ui.MySimPicActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.UserHomeActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.FollowUserActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".ui.BigMultiImgActivity"
             android:screenOrientation="portrait" />
 

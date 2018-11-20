@@ -3,6 +3,7 @@ package com.wulee.simplepicture.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.bean.StickFigureImgObj;
 import com.wulee.simplepicture.ui.LoginActivity;
+import com.wulee.simplepicture.ui.UserHomeActivity;
 import com.wulee.simplepicture.utils.ImageUtil;
 import com.wulee.simplepicture.utils.NoFastClickUtils;
 import com.wulee.simplepicture.utils.OtherUtil;
@@ -33,6 +35,7 @@ public class PicAdapter extends BaseQuickAdapter<StickFigureImgObj,BaseViewHolde
     private Context context;
     private HashMap<String,Integer> likeNumMap = new HashMap<>();
     private boolean mIsLikeOpt = true; //是否可以点赞
+    private boolean mShowUserAvatar = true; //是否显示用户头像
 
     public PicAdapter(int layoutResId, ArrayList<StickFigureImgObj> dataList, Context context) {
         super(layoutResId, dataList);
@@ -41,6 +44,11 @@ public class PicAdapter extends BaseQuickAdapter<StickFigureImgObj,BaseViewHolde
 
     public void setLikeOpt(boolean likeOpt) {
         mIsLikeOpt = likeOpt;
+        notifyDataSetChanged();
+    }
+
+    public void setShowUserAvatar(boolean showUserAvatar) {
+        mShowUserAvatar = showUserAvatar;
         notifyDataSetChanged();
     }
 
@@ -75,6 +83,26 @@ public class PicAdapter extends BaseQuickAdapter<StickFigureImgObj,BaseViewHolde
                     addLikes(pic.getObjectId(),num,tvLikeNum);
                 }
             });
+        }
+
+        ImageView ivUserAvatar = baseViewHolder.getView(R.id.iv_user_avatar);
+        if(mShowUserAvatar){
+            ivUserAvatar.setVisibility(View.VISIBLE);
+            String userImageUrl = pic.getUserInfo().getUserImage();
+            ivUserAvatar.setTag(R.string.app_name,userImageUrl);
+            if(pic.getUserInfo() != null && !TextUtils.isEmpty(pic.getUserInfo().getUserImage())){
+                ImageUtil.setCircleImageView(ivUserAvatar,userImageUrl,R.mipmap.icon_user_avatar_def,context);
+            }
+            ivUserAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext,UserHomeActivity.class);
+                    intent.putExtra(UserHomeActivity.USER_INFO,pic.getUserInfo());
+                    mContext.startActivity(intent);
+                }
+            });
+        }else{
+            ivUserAvatar.setVisibility(View.GONE);
         }
     }
 

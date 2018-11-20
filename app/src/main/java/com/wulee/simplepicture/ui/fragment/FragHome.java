@@ -1,6 +1,5 @@
 package com.wulee.simplepicture.ui.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.wulee.simplepicture.R;
 import com.wulee.simplepicture.base.MainBaseFrag;
@@ -32,9 +30,6 @@ import butterknife.Unbinder;
 
 public class FragHome extends MainBaseFrag implements ViewPager.OnPageChangeListener {
 
-
-    @BindView(R.id.ivstatebar)
-    ImageView ivstatebar;
     @BindView(R.id.viewpager)
     NoScroViewPager mViewPager;
     Unbinder unbinder;
@@ -57,11 +52,6 @@ public class FragHome extends MainBaseFrag implements ViewPager.OnPageChangeList
 
     @Override
     protected void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            ivstatebar.setVisibility(View.VISIBLE);
-        } else {
-            ivstatebar.setVisibility(View.GONE);
-        }
         mFragments = new ArrayList<>();
         List<String> picTypes = Arrays.asList(getResources().getStringArray(R.array.array_pic_type));
         for (int i = 0; i < picTypes.size(); i++) {
@@ -80,7 +70,7 @@ public class FragHome extends MainBaseFrag implements ViewPager.OnPageChangeList
 
         pagerAdapter = new MyFragmentPageAdapter(getChildFragmentManager(), mFragments);
         mViewPager.setScroll(false);
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(5);
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setAdapter(pagerAdapter);
         mSwitchTabBar.setSelectItem(0);

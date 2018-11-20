@@ -84,6 +84,7 @@ public class MySimPicActivity extends BaseActivity {
         recyclerview.setAdapter(mAdapter);
 
         mAdapter.setLikeOpt(false);
+        mAdapter.setShowUserAvatar(false);
     }
 
 
@@ -198,7 +199,7 @@ public class MySimPicActivity extends BaseActivity {
         UserInfo userInfo = BmobUser.getCurrentUser(UserInfo.class);
         BmobQuery<StickFigureImgObj> query = new BmobQuery<>();
         query.addWhereEqualTo("userInfo", userInfo);    // 查询当前用户的作品
-        query.include("userInfo");// 希望在查询位置信息的同时也把当前用户的作品查询出来
+        query.include("userInfo");// 希望在查询作品信息的同时也把当前用户的作品查询出来
         query.order("-createdAt");
         // 如果是加载更多
         if(actionType == STATE_MORE){
@@ -239,7 +240,7 @@ public class MySimPicActivity extends BaseActivity {
                     }
                 }else{
                     mAdapter.loadMoreFail();
-                    Log.d("","查询LocationInfo失败"+e.getMessage()+","+e.getErrorCode());
+                    Log.d("","查询失败"+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });
