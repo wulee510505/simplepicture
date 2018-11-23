@@ -1,7 +1,7 @@
 # simplepicture
 简笔画
 APK下载地址
-http://bmob-cdn-21428.b0.upaiyun.com/2018/09/20/fca1ff584090b0a38038634a76b4f809.apk
+http://bmob-cdn-21428.b0.upaiyun.com/2018/11/23/7590547f40d36b1280242c2a74b67560.apk
 
 
 效果图如下：
